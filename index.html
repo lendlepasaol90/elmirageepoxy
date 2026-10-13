@@ -333,6 +333,29 @@ main{position:relative;z-index:1}
   .sample-tile{transform:none}
 }
 
+/* footer map */
+.foot-map{position:relative;margin-top:44px;border-radius:24px;overflow:hidden;height:340px;background:#2A2223;border:1px solid rgba(255,255,255,.08)}
+.map-frame{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.25) contrast(1.05)}
+.map-card{position:absolute;left:20px;top:20px;z-index:2;background:var(--white);color:var(--ink);border-radius:18px;padding:20px 22px;display:grid;gap:6px;max-width:300px;box-shadow:0 30px 60px -24px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
+.map-card h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0;font-weight:500}
+.map-card b{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:20px}
+.map-card span{font-size:14px;color:var(--muted)}
+.map-card .btn{margin-top:8px;padding:11px 18px;font-size:14px;justify-self:start;color:var(--white)}
+.map-card .btn .arr{color:var(--white)}
+.map-fallback{position:absolute;inset:0;background:#EFE7E3;background-image:linear-gradient(rgba(158,15,28,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(158,15,28,.06) 1px,transparent 1px);background-size:40px 40px}
+.map-fallback .road{position:absolute;background:#FFFFFF;box-shadow:0 0 0 1px #E2D6D2}
+.map-fallback .r1{left:-5%;right:-5%;top:58%;height:14px;transform:rotate(-14deg);background:#FFE7A8;box-shadow:0 0 0 1px #E8CC7E}
+.map-fallback .r2{top:-10%;bottom:-10%;left:62%;width:10px}
+.map-fallback .r3{left:0;right:0;top:30%;height:8px}
+.map-fallback .r4{top:0;bottom:0;left:38%;width:8px}
+.map-fallback .mlabel{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#8E7C7E}
+.map-fallback .l1{left:68%;top:50%;transform:rotate(-14deg)}.map-fallback .l2{left:63.5%;top:12%;writing-mode:vertical-rl}.map-fallback .l3{left:44%;top:16%}.map-fallback .l4{left:76%;top:76%}
+.map-fallback .pin{position:absolute;left:62.3%;top:55%;width:0;height:0}
+.map-fallback .pin i{position:absolute;left:-14px;top:-36px;width:28px;height:28px;border-radius:50% 50% 50% 0;background:var(--red);transform:rotate(-45deg);box-shadow:0 8px 16px -6px rgba(158,15,28,.7)}
+.map-fallback .pin i::after{content:"";position:absolute;left:9px;top:9px;width:10px;height:10px;border-radius:50%;background:#fff}
+.map-fallback .pin::before{content:"";position:absolute;left:-30px;top:-14px;width:60px;height:28px;border-radius:50%;background:rgba(215,25,42,.35);animation:pulse 2s infinite}
+@media (max-width:600px){.foot-map{height:auto;display:grid}.map-frame,.map-fallback{position:relative;height:240px}.map-card{position:relative;left:auto;top:auto;max-width:none;border-radius:0;animation:none}}
+
 picture{display:contents}
 /* gallery */
 .gallery{background:var(--white)}
@@ -986,6 +1009,15 @@ a.svc{text-decoration:none;color:inherit}
       <div><h4>Services</h4><ul><li><a href="garage-floor-coatings-el-mirage-az.html">Garage Floor Coatings</a></li><li><a href="residential-epoxy-flooring-el-mirage-az.html">Residential Epoxy Flooring</a></li><li><a href="decorative-flake-flooring-el-mirage-az.html">Decorative Flake Flooring</a></li><li><a href="metallic-epoxy-flooring-el-mirage-az.html">Metallic Epoxy Flooring</a></li><li><a href="polyaspartic-floor-coatings-el-mirage-az.html">Polyaspartic Floor Coatings</a></li></ul></div>
       <div><h4>More services</h4><ul><li><a href="polyurea-floor-coatings-el-mirage-az.html">Polyurea Floor Coatings</a></li><li><a href="patio-concrete-coatings-el-mirage-az.html">Patio &amp; Concrete Coatings</a></li><li><a href="commercial-epoxy-flooring-el-mirage-az.html">Commercial Epoxy Flooring</a></li><li><a href="warehouse-floor-coatings-el-mirage-az.html">Warehouse Floor Coatings</a></li></ul></div>
       <div><h4>Contact</h4><ul><li>(623) 555-0148</li><li>info@elmirageepoxy.com</li><li>El Mirage, AZ 85335</li><li>Mon–Sat · 7 AM – 6 PM</li><li><a href="#top">Home</a></li></ul></div>
+    </div>
+    <div class="foot-map">
+      <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53176.9304179575!2d-112.36795616489711!3d33.590819723269945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b438c646f3aef%3A0x3abfd11866895969!2sEl%20Mirage%2C%20AZ%2C%20USA!5e0!3m2!1sen!2sph!4v1791894087259!5m2!1sen!2sph" title="Map of El Mirage, Arizona" width="600" height="450" style="border:0" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="map-card">
+        <h4>Find us</h4>
+        <b>El Mirage, AZ 85335</b>
+        <span>Serving El Mirage and the West Valley</span>
+        <a href="https://www.google.com/maps/place/El+Mirage,+AZ,+USA" target="_blank" rel="noopener" class="btn btn-red">Open in Google Maps <span class="arr">→</span></a>
+      </div>
     </div>
     <div class="foot-bottom"><span>© 2026 El Mirage Epoxy. All rights reserved.</span><span>elmirageepoxy.com</span></div>
   </div>
