@@ -614,6 +614,75 @@ a.svc{text-decoration:none;color:inherit}
 .rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 @media (max-width:980px){.rel-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.rel-grid{grid-template-columns:1fr}}
+
+/* compare table */
+.compare{background:var(--paper)}
+.cmp-scroll{overflow-x:auto;border-radius:22px;border:1px solid var(--line);background:var(--white)}
+.cmp{width:100%;min-width:680px;border-collapse:collapse;font-size:15.5px}
+.cmp th,.cmp td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-family:var(--display);font-weight:800;font-stretch:110%;font-size:19px;background:var(--white);border-bottom:2px solid var(--ink)}
+.cmp thead th:nth-child(2){color:var(--red)}
+.cmp tbody th{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:20%}
+.cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0}
+.cmp tbody tr{transition:background .25s}
+.cmp tbody tr:hover{background:#FDF3F4}
+.cmp td{color:var(--ink)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cmp-note{margin-top:18px;color:var(--muted);font-size:15px;max-width:70ch}
+/* homes & businesses */
+.props{background:var(--white)}
+.props-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:820px){.props-grid{grid-template-columns:1fr}}
+.prop{border:1px solid var(--line);border-radius:24px;padding:clamp(24px,3.5vw,40px);display:grid;gap:16px;align-content:start;background:var(--paper);min-width:0;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.prop:hover{transform:translateY(-4px);box-shadow:0 30px 60px -34px rgba(92,9,17,.5)}
+.prop-dark{background:var(--ink);color:#F3E6E7;border-color:var(--ink)}
+.prop-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.prop-dark .prop-tag{color:#FF8A94}
+.prop h3{font-size:clamp(24px,2.6vw,30px);font-weight:800;font-stretch:110%}
+.prop p{color:var(--muted);max-width:60ch}
+.prop-dark p{color:#D9C9CB}
+.prop ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+@media (max-width:520px){.prop ul{grid-template-columns:1fr}}
+.prop li{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:15px}
+.prop li svg{flex:none;margin-top:2px;color:var(--red)}
+.prop-dark li svg{color:#FF8A94}
+.prop .more{font-family:var(--display);font-weight:700;color:var(--red);text-decoration:none;display:inline-flex;gap:8px;margin-top:4px}
+.prop-dark .more{color:#FF8A94}
+.prop .more i{font-style:normal;transition:transform .35s var(--ease)}
+.prop .more:hover i{transform:translateX(5px)}
+/* diy vs pro */
+.diy{background:var(--paper)}
+.diy-table{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--white)}
+.diy-row{display:grid;grid-template-columns:.8fr 1fr 1fr;border-bottom:1px solid var(--line)}
+.diy-row:last-child{border-bottom:0}
+.diy-row > *{padding:16px 20px;min-width:0}
+.diy-row b{font-family:var(--display);font-weight:700}
+.diy-row span:nth-child(2){color:var(--muted)}
+.diy-row span:nth-child(3){background:#FDF3F4;font-weight:600;position:relative}
+.diy-head{background:var(--ink)}
+.diy-head span,.diy-head span:nth-child(2){font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#E9DADC}
+.diy-head span:nth-child(3){background:var(--red);color:#fff}
+@media (max-width:640px){.diy-row{grid-template-columns:1fr 1fr}.diy-row > b{grid-column:1/-1;padding-bottom:0}.diy-head > span:first-child{display:none}}
+/* care */
+.care{background:var(--white)}
+.care-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:care}
+@media (max-width:900px){.care-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.care-grid{grid-template-columns:1fr}}
+.care-item{counter-increment:care;border-top:3px solid var(--ink);padding:20px 4px 4px;display:grid;gap:8px;align-content:start;position:relative;transition:border-color .3s}
+.care-item::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--red);transform:rotate(45deg);margin-bottom:2px}
+.care-item:hover{border-top-color:var(--red)}
+.care-item h3{font-size:20px}
+.care-item p{color:var(--muted);font-size:15.5px}
+
+.whyus{background:var(--paper)}
+.whyus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.whyus-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.whyus-grid{grid-template-columns:1fr}}
+.wu{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;gap:10px;align-content:start;transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease)}
+.wu:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 24px 50px -30px rgba(158,15,28,.55)}
+.wu-ico{width:40px;height:40px;border-radius:12px;background:var(--red);color:var(--white);display:grid;place-items:center}
+.wu h3{font-size:19px}
+.wu p{color:var(--muted);font-size:15.5px}
 </style>
 </head>
 <body>
@@ -721,7 +790,7 @@ a.svc{text-decoration:none;color:inherit}
       <h2>More than a coat of paint on concrete.</h2>
       <p>Bare concrete soaks up oil, sheds dust, and never looks finished. A properly installed coating system protects the slab and changes how the whole room feels.</p>
       <p>At <strong>El Mirage Epoxy</strong>, we start by evaluating your concrete: its condition, any old coatings, cracks, moisture, and how the space gets used. Then we recommend a system built for that floor, not a one-size-fits-all kit.</p>
-      <ul class="checks">
+      <p>Whether you're finishing the garage in a new home, refreshing a worn shop floor or upgrading a commercial space, the goal is the same: a floor that looks great on day one and keeps working for years.</p><ul class="checks">
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Floor evaluation on every job</li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Crack &amp; spall repair</li>
         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Custom colors &amp; flake blends</li>
@@ -827,6 +896,29 @@ a.svc{text-decoration:none;color:inherit}
   </div>
 </section>
 
+<!-- COMPARE -->
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Coating systems compared</span><h2>Epoxy, polyaspartic or polyurea?</h2></div>
+      <p class="lede">All three are resinous floor coatings, but they behave differently. Many floors use more than one, and an epoxy base coat under a polyaspartic topcoat is a common pairing. Here is how they generally compare. Exact performance always depends on the specific product.</p>
+    </div>
+    <div class="cmp-scroll reveal">
+      <table class="cmp">
+        <thead><tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Epoxy</th><th scope="col">Polyaspartic</th><th scope="col">Polyurea</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Best known for</th><td>Hard, well-bonded base layers and solid colors</td><td>UV stability and a fast return to use</td><td>Tough, flexible coating layers</td></tr>
+          <tr><th scope="row">Sun exposure</th><td>Some formulas can amber in direct sunlight</td><td>Generally holds its color in sunlight</td><td>Aliphatic versions resist yellowing; varies by product</td></tr>
+          <tr><th scope="row">Working time</th><td>Longer and more forgiving</td><td>Short, especially on a hot slab</td><td>Often very short</td></tr>
+          <tr><th scope="row">Typical role</th><td>Primer, body coat, metallic and solid-color floors</td><td>Topcoats and fast-turnaround flake systems</td><td>Base layers or full systems in demanding areas</td></tr>
+          <tr><th scope="row">Common El Mirage use</th><td>Interior garages, shops and commercial rooms</td><td>Sunlit garages, patios and flake floors</td><td>Garages and high-wear floors</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">Product data sheets vary widely. We'll show you the actual system and products specified for your floor before any work starts.</p>
+  </div>
+</section>
+
 <!-- WHY -->
 <section class="why">
   <div class="wrap">
@@ -862,6 +954,17 @@ a.svc{text-decoration:none;color:inherit}
       <div class="thermo-bar"><i></i></div>
       <span>El Mirage, July</span>
     </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="whyus" id="why-us">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Why El Mirage Epoxy</span><h2>What you can expect from us.</h2></div>
+      <p class="lede">Choosing a floor coating contractor isn't only about who can roll out a coating. The finished floor is only as good as the work underneath it, so that's where we put our attention.</p>
+    </div>
+    <div class="whyus-grid"><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>An honest floor evaluation</h3><p>We look at the slab first: old coatings, cracks, moisture and contamination. If a coating isn't the right fit for a floor, we'll tell you.</p></div><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>Preparation done properly</h3><p>Mechanical grinding, crack repair and a clean, dust-free surface come before any coating goes down.</p></div><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>Systems matched to the space</h3><p>A sunlit garage, a backyard patio and a warehouse floor get different products, not one kit for every job.</p></div><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>A clear written scope</h3><p>Your estimate spells out preparation, repairs, product layers, finish and cure times, so you can compare quotes fairly.</p></div><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>Local to the West Valley</h3><p>We work in El Mirage and nearby communities, and we plan each job around summer heat and monsoon season.</p></div><div class="wu reveal"><span class="wu-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span><h3>Care guidance after the job</h3><p>You'll know when you can walk on it, park on it and clean it, and how to keep the floor looking good.</p></div></div>
   </div>
 </section>
 
@@ -901,6 +1004,42 @@ a.svc{text-decoration:none;color:inherit}
   </div>
 </section>
 
+<!-- PROPERTIES -->
+<section class="props" id="homes-businesses">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Residential &amp; commercial</span><h2>Floor coatings for El Mirage homes and businesses.</h2></div>
+      <p class="lede">The coating system is chosen around how the space is used. A family garage and a busy service bay need very different floors.</p>
+    </div>
+    <div class="props-grid">
+      <article class="prop reveal">
+        <span class="prop-tag">For homeowners</span>
+        <h3>Garages, workshops and more</h3>
+        <p>For most homeowners, the garage is where it starts. A coated garage floor resists oil spots and tire marks, sweeps clean after a dusty monsoon week, and makes the space feel like part of the house. Many homeowners then carry the same finish into workshops, laundry rooms, home gyms and covered patios.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Two- and three-car garages</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Home gyms and workshops</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Laundry and utility rooms</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Covered patios and walkways</li>
+        </ul>
+        <a href="residential-epoxy-flooring-el-mirage-az.html" class="more">Residential epoxy flooring <i>→</i></a>
+      </article>
+      <article class="prop prop-dark reveal">
+        <span class="prop-tag">For businesses</span>
+        <h3>Floors that keep working</h3>
+        <p>Commercial floors have to look professional and hold up to daily operations. We plan around your hours, traffic, cleaning routine and any chemicals the floor will see, so the system fits how the space is actually used. Larger projects can often be phased to keep parts of the building open.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Retail spaces and showrooms</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Auto shops and service bays</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Warehouses and distribution floors</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Offices, break rooms and storage</li>
+        </ul>
+        <a href="commercial-epoxy-flooring-el-mirage-az.html" class="more">Commercial epoxy flooring <i>→</i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- PREP -->
 <section class="prep">
   <div class="wrap">
@@ -917,6 +1056,36 @@ a.svc{text-decoration:none;color:inherit}
         <li><span class="dot"></span><div><b>Moisture check</b><span>Vapor coming through the slab can cause adhesion problems later.</span></div></li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- DIY -->
+<section class="diy" id="diy-vs-pro">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Kit vs. professional system</span><h2>Why a store-bought kit often falls short.</h2></div>
+      <p class="lede">DIY epoxy kits are popular, and they can work for light use. The difference is usually in everything that happens before and after the coating goes down.</p>
+    </div>
+    <div class="diy-table reveal" role="table" aria-label="DIY kit compared with a professional installation">
+      <div class="diy-row diy-head" role="row"><span role="columnheader"></span><span role="columnheader">Typical DIY kit</span><span role="columnheader">Professional install</span></div>
+      <div class="diy-row" role="row"><b role="rowheader">Surface prep</b><span role="cell">Acid etching or scrubbing</span><span role="cell">Diamond grinding with dust extraction</span></div>
+      <div class="diy-row" role="row"><b role="rowheader">Coating build</b><span role="cell">Thin, often a single coat</span><span role="cell">Multi-layer system built to spec</span></div>
+      <div class="diy-row" role="row"><b role="rowheader">Topcoat</b><span role="cell">Often none, or a light clear coat</span><span role="cell">Protective topcoat matched to the space</span></div>
+      <div class="diy-row" role="row"><b role="rowheader">Repairs</b><span role="cell">Cracks usually left as they are</span><span role="cell">Cracks, pits and spalls filled first</span></div>
+      <div class="diy-row" role="row"><b role="rowheader">Heat &amp; timing</b><span role="cell">General label instructions</span><span role="cell">Applied around actual slab temperature</span></div>
+    </div>
+    <p class="cmp-note">A failed coating usually has to be ground off before the floor can be redone, so getting it right the first time tends to cost less in the end.</p>
+  </div>
+</section>
+
+<!-- CARE -->
+<section class="care" id="floor-care">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">After installation</span><h2>Keeping your floor looking new.</h2></div>
+      <p class="lede">A coated floor is easy to look after. A few simple habits keep it clean and protect the finish for years of everyday use.</p>
+    </div>
+    <ol class="care-grid"><li class="care-item reveal"><h3>Sweep or dust-mop often</h3><p>Sand and grit act like sandpaper under shoes and tires. A soft broom or dust mop once or twice a week keeps them off the surface.</p></li><li class="care-item reveal"><h3>Mop with a mild cleaner</h3><p>Warm water and a pH-neutral cleaner handle routine cleaning. Skip harsh acids and citrus cleaners unless the product data allows them.</p></li><li class="care-item reveal"><h3>Wipe up spills promptly</h3><p>Clean up oil, antifreeze and battery acid quickly, even on a chemical-resistant floor.</p></li><li class="care-item reveal"><h3>Use mats and pads</h3><p>Put mats at entry points and pads under jack stands, kickstands and the feet of heavy equipment.</p></li><li class="care-item reveal"><h3>Don't drag heavy objects</h3><p>Lift or roll tools and furniture instead of dragging sharp metal edges across the finish.</p></li><li class="care-item reveal"><h3>Respect the cure schedule</h3><p>Wait the full cure time before parking or moving heavy items back in. We'll tell you when it's ready for each.</p></li></ol>
   </div>
 </section>
 
@@ -950,7 +1119,7 @@ a.svc{text-decoration:none;color:inherit}
       <details><summary>Will it hold up in Arizona heat?<span class="pm"></span></summary><div class="ans">With the right system and prep, yes. For sun-exposed garages and patios we typically recommend UV-stable polyaspartic topcoats, and good grinding helps prevent hot-tire pickup.</div></details>
       <details><summary>Is epoxy flooring slippery?<span class="pm"></span></summary><div class="ans">Any smooth floor can be slippery when wet. We can add texture or aggregate for traction. More texture means more grip; smoother floors are easier to mop. We'll help you find the balance.</div></details>
       <details><summary>Can I pick my own colors?<span class="pm"></span></summary><div class="ans">Yes. Depending on the system, there are many solid colors, flake blends and metallic options to choose from.</div></details>
-      <details><summary>How much does epoxy flooring cost in El Mirage?<span class="pm"></span></summary><div class="ans">Price depends on square footage, slab condition, prep, repairs, the coating system and decorative options. The most accurate number comes from looking at your floor, so request a free estimate.</div></details>
+      <details><summary>How long does installation take?<span class="pm"></span></summary><div class="ans">It depends on the floor size, the repairs needed and the coating system. Fast-cure polyaspartic systems can shorten the schedule. Cure time before parking is separate and depends on the product and temperature. We&#x27;ll give you a timeline after seeing the floor.</div></details><details><summary>Do I need to empty my garage?<span class="pm"></span></summary><div class="ans">Yes. The floor needs to be clear for grinding and coating. We&#x27;ll talk through what needs to move, and when it can go back in.</div></details><details><summary>Can you coat a brand-new slab?<span class="pm"></span></summary><div class="ans">New concrete needs time to cure and release moisture before most coatings can go down. We check moisture before scheduling the work.</div></details><details><summary>Will a coating hide stains and cracks?<span class="pm"></span></summary><div class="ans">Flake floors hide minor stains well. Stable cracks can be repaired before coating, but cracks caused by ongoing slab movement may show again over time.</div></details><details><summary>Is epoxy flooring easy to clean?<span class="pm"></span></summary><div class="ans">Yes. Routine sweeping and an occasional mop with a mild cleaner is usually all it needs.</div></details><details><summary>What&#x27;s the difference between epoxy and garage floor paint?<span class="pm"></span></summary><div class="ans">Garage floor paint is a thin decorative layer. A resinous coating system is thicker, bonds to properly prepared concrete and includes a protective topcoat, so it holds up much better to tires, spills and wear.</div></details><details><summary>Can you coat over tile or pavers?<span class="pm"></span></summary><div class="ans">Most floor coatings are designed for concrete. Tile, pavers and some other surfaces usually aren&#x27;t good candidates without removal or special preparation. We&#x27;ll let you know what&#x27;s possible after seeing the floor.</div></details><details><summary>Do you offer free estimates?<span class="pm"></span></summary><div class="ans">Yes. Send us your location, approximate square footage and the finish you have in mind, and we&#x27;ll set up a time to look at the floor.</div></details><details><summary>How much does epoxy flooring cost in El Mirage?<span class="pm"></span></summary><div class="ans">Price depends on square footage, slab condition, prep, repairs, the coating system and decorative options. The most accurate number comes from looking at your floor, so request a free estimate.</div></details>
     </div>
   </div>
 </section>
@@ -960,7 +1129,7 @@ a.svc{text-decoration:none;color:inherit}
   <div class="wrap">
     <div class="sec-head">
       <div><span class="eyebrow">Service area</span><h2>Based in El Mirage. Working across the West Valley.</h2></div>
-      <p class="lede">We serve homeowners and businesses throughout El Mirage and the surrounding communities.</p>
+      <p class="lede">El Mirage Epoxy is based in El Mirage and works across the northwest Valley, including homes and businesses in Surprise, Sun City, Sun City West, Youngtown, Peoria, Glendale, Waddell, Litchfield Park, Goodyear and Avondale. If your property is nearby but not listed, get in touch and we'll let you know if it's in range.</p>
     </div>
     <div class="area-cloud">
       <span class="area home">El Mirage</span><span class="area">Surprise</span><span class="area">Sun City</span><span class="area">Youngtown</span><span class="area">Peoria</span><span class="area">Glendale</span><span class="area">Sun City West</span><span class="area">Waddell</span><span class="area">Litchfield Park</span><span class="area">Goodyear</span><span class="area">Avondale</span>
@@ -975,7 +1144,7 @@ a.svc{text-decoration:none;color:inherit}
     <div>
       <span class="eyebrow">Free estimate</span>
       <h2 style="margin-top:14px">Ready to upgrade your concrete?</h2>
-      <p class="lede">Tell us about your floor and we'll call you back to talk options, timing and pricing.</p>
+      <p class="lede">Tell us about your floor and we'll call you back to talk options, timing and pricing. Share the property location, the approximate size of the space, the condition of the concrete and the look you have in mind. The more we know, the more useful that first conversation will be.</p>
       <div class="contact-lines">
         <div class="cline"><span class="k">Call</span><span class="v" id="ph">(623) 555-0148</span><button class="copy" data-copy="ph" type="button">Copy</button></div>
         <div class="cline"><span class="k">Email</span><span class="v" id="em" style="font-size:clamp(17px,2vw,22px)">info@elmirageepoxy.com</span><button class="copy" data-copy="em" type="button">Copy</button></div>
