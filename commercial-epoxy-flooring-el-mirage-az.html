@@ -6,6 +6,10 @@
 <title>Commercial Epoxy Flooring in El Mirage, AZ | El Mirage Epoxy</title>
 <meta name="description" content="Plan commercial epoxy flooring in El Mirage, AZ with a system matched to traffic, cleaning, and operational needs.">
 <link rel="canonical" href="https://elmirageepoxy.com/commercial-epoxy-flooring-el-mirage-az/">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#D7192A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -318,6 +322,13 @@ main{position:relative;z-index:1}
   .sample-tile{transform:none}
 }
 
+.logo-img{height:64px;width:auto;display:block;transition:transform .45s var(--ease),filter .45s}
+.logo:hover .logo-img{transform:scale(1.04) rotate(-1deg);filter:drop-shadow(0 8px 14px rgba(215,25,42,.35))}
+header.nav.scrolled .logo-img{height:52px}
+.nav .wrap{padding-block:10px}
+@media (max-width:560px){.logo-img{height:50px}}
+.logo-icon{width:56px;height:56px;flex:none;border-radius:13px}
+
 body{margin:0}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 img{max-width:100%}
@@ -462,11 +473,7 @@ a.svc{text-decoration:none;color:inherit}
 
 <header class="nav" id="nav"><div class="wrap">
   <a href="index.html" class="logo" aria-label="El Mirage Epoxy home">
-    <span class="logo-mark" aria-hidden="true">
-      <i style="left:6px;top:7px;transform:rotate(20deg)"></i><i style="right:7px;top:10px;transform:rotate(-30deg)"></i><i style="left:9px;bottom:8px;transform:rotate(60deg)"></i><i style="right:9px;bottom:6px;transform:rotate(-10deg)"></i>
-      <b>EM</b>
-    </span>
-    <span class="logo-text">El Mirage Epoxy<small>FLOOR COATINGS · AZ</small></span>
+    <img class="logo-img" src="assets/logo.png" alt="El Mirage Epoxy" width="389" height="160">
   </a>
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -576,7 +583,7 @@ a.svc{text-decoration:none;color:inherit}
     <div class="foot">
       <div>
         <div class="logo" style="margin-bottom:16px">
-          <span class="logo-mark" aria-hidden="true"><b>EM</b></span>
+          <img class="logo-icon" src="assets/logo-icon.png" alt="" width="128" height="128">
           <span class="logo-text">El Mirage Epoxy<small>FLOOR COATINGS · AZ</small></span>
         </div>
         <p style="max-width:34ch">Residential and commercial epoxy flooring in El Mirage, Arizona and the West Valley.</p>
