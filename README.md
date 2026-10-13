@@ -10,5 +10,5 @@ Static HTML, no build step. Open `index.html` in a browser.
 
 ## To update later
 - Phone and email are placeholders: (623) 555-0148 and info@elmirageepoxy.com
-- Photo placeholders are marked "Project photo coming soon"
+- Photos in `assets/photos` are licensed from Envato Elements (Lifetime Commercial License, account: Danny)
 - The estimate form is front-end only; connect it to a form service before launch
