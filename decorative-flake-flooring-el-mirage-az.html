@@ -322,6 +322,29 @@ main{position:relative;z-index:1}
   .sample-tile{transform:none}
 }
 
+/* flake studio */
+.studio{background:var(--white);overflow:hidden}
+.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,88px);align-items:center}
+.studio-grid > *{min-width:0}
+@media (max-width:900px){.studio-grid{grid-template-columns:1fr}}
+.studio-copy{display:grid;gap:18px;justify-items:start}
+.blends{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.blend{font:inherit;font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;border:2px solid var(--line);background:var(--white);color:var(--ink);cursor:pointer;transition:border-color .25s,transform .35s var(--ease),box-shadow .35s var(--ease)}
+.blend:hover{transform:translateY(-2px);border-color:#E2C9CB}
+.blend[aria-pressed="true"]{border-color:var(--red);box-shadow:0 10px 24px -12px rgba(215,25,42,.6)}
+.blend .dots{display:grid;grid-template-columns:repeat(2,10px);gap:2px;padding:3px;border-radius:8px;background:var(--paper)}
+.blend .dots i{width:10px;height:10px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.studio-spec{display:grid;grid-template-columns:repeat(3,1fr);margin:6px 0 4px;border-top:2px solid var(--ink);width:100%}
+.studio-spec > div{padding:14px 12px 0 0}
+.studio-spec > div + div{padding-left:14px;border-left:1px solid var(--line)}
+.studio-spec dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.studio-spec dd{margin:4px 0 0;font-family:var(--display);font-weight:700;font-size:16px}
+@media (max-width:480px){.studio-spec{grid-template-columns:1fr}.studio-spec > div + div{padding-left:0;border-left:0}}
+.studio-sample{max-width:460px;width:100%;justify-self:center}
+.studio-sample .sample-tile{transition:transform .6s var(--ease),background .9s ease}
+.studio-sample .spec.pop{animation:pop .5s var(--ease)}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+
 /* hero form */
 main{overflow-x:clip}
 .hero-visual{position:relative;display:grid;justify-items:end;align-items:start;padding:28px 0 0;min-width:0;animation:fadeUp 1s .15s var(--ease) both}
@@ -682,11 +705,10 @@ a.svc{text-decoration:none;color:inherit}
     addEventListener('pointermove',e=>{glow.style.opacity=1;glow.style.transform=`translate(${e.clientX-170}px,${e.clientY-170}px)`;},{passive:true});
   }
   // tilt
-  const tile=document.getElementById('tile');
-  if(!reduce && tile){
+  if(!reduce)document.querySelectorAll('#tile,[data-tilt]').forEach(tile=>{
     tile.addEventListener('pointermove',e=>{const r=tile.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tile.style.transform=`perspective(1200px) rotateY(${x*10}deg) rotateX(${-y*10}deg)`;});
     tile.addEventListener('pointerleave',()=>{tile.style.transform='';});
-  }
+  });
 
   // flakes
   const COLORS=['#FFFFFF','#F3EDEE','#B9B2B3','#2A2223','#7A0B15','#FF6B76'];
@@ -694,12 +716,12 @@ a.svc{text-decoration:none;color:inherit}
     if(!canvas)return;
     const ctx=canvas.getContext('2d');let w,h,dpr,settled=[],falling=[],raf;
     function size(){dpr=Math.min(devicePixelRatio||1,2);w=canvas.clientWidth;h=canvas.clientHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
-    function mk(x,y,fall){const s=(opts.min||3)+Math.random()*(opts.max||7);return{x,y,s,r:Math.random()*Math.PI,c:COLORS[Math.random()*COLORS.length|0],vy:fall?2+Math.random()*3:0,vr:(Math.random()-.5)*.2,ty:fall?Math.random()*h:y,a:fall?1:(opts.alpha||1),pts:Array.from({length:5},()=>.55+Math.random()*.45)};}
+    function mk(x,y,fall){const s=(opts.min||3)+Math.random()*(opts.max||7);return{x,y,s,r:Math.random()*Math.PI,c:(opts.colors||COLORS)[Math.random()*(opts.colors||COLORS).length|0],vy:fall?2+Math.random()*3:0,vr:(Math.random()-.5)*.2,ty:fall?Math.random()*h:y,a:fall?1:(opts.alpha||1),pts:Array.from({length:5},()=>.55+Math.random()*.45)};}
     function seed(){settled=[];const n=Math.round(w*h/(opts.density||900));for(let i=0;i<n;i++)settled.push(mk(Math.random()*w,Math.random()*h,false));}
     function draw(f){ctx.save();ctx.globalAlpha=f.a;ctx.translate(f.x,f.y);ctx.rotate(f.r);ctx.fillStyle=f.c;ctx.beginPath();for(let i=0;i<5;i++){const ang=i/5*Math.PI*2;const rr=f.s*f.pts[i]*.6;i?ctx.lineTo(Math.cos(ang)*rr,Math.sin(ang)*rr*.8):ctx.moveTo(Math.cos(ang)*rr,Math.sin(ang)*rr*.8);}ctx.closePath();ctx.fill();ctx.restore();}
     function frame(){
       ctx.clearRect(0,0,w,h);for(const f of settled)draw(f);
-      if(Math.random()<(opts.rate||.35)){const cx=Math.random()*w;for(let i=0;i<(opts.burst||6);i++)falling.push(mk(cx+(Math.random()-.5)*60,-10-Math.random()*40,true));}
+      const boost=performance.now()<(opts.boostUntil||0);if(boost||Math.random()<(opts.rate||.35)){const cx=Math.random()*w;for(let i=0;i<(boost?40:(opts.burst||6));i++)falling.push(mk(boost?Math.random()*w:cx+(Math.random()-.5)*60,-10-Math.random()*40,true));}
       for(let i=falling.length-1;i>=0;i--){const f=falling[i];f.y+=f.vy;f.vy+=.08;f.r+=f.vr;f.x+=Math.sin(f.y*.03)*.4;
         if(f.y>=f.ty){f.y=f.ty;f.a=opts.alpha||1;settled.push(f);falling.splice(i,1);if(settled.length>(w*h/(opts.density||900))*1.4)settled.shift();}else draw(f);}
       raf=requestAnimationFrame(frame);
@@ -709,10 +731,33 @@ a.svc{text-decoration:none;color:inherit}
       new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(!raf)frame();}else{cancelAnimationFrame(raf);raf=null;}})).observe(canvas);
     }
     let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>{size();seed();if(reduce)settled.forEach(draw);},150);});
+    return {recolor(c){opts.colors=c;if(reduce){seed();ctx.clearRect(0,0,w,h);settled.forEach(draw);}else{opts.boostUntil=performance.now()+1400;}}};
   }
   flakeField(document.getElementById('flakes'),{density:520,min:3,max:8,rate:.5,burst:8});
   flakeField(document.getElementById('flakes2'),{density:2600,min:3,max:7,rate:.18,burst:5,alpha:.7});
   flakeField(document.getElementById('flakes3'),{density:420,min:3,max:8,rate:.45,burst:7});
+
+  // flake blend studio
+  const studio=document.getElementById('studio');
+  if(studio){
+    const BL={
+      lava:{name:'Lava Red',bg:'linear-gradient(160deg,#E32737 0%,#B5111F 55%,#7A0B15 100%)',c:['#FFFFFF','#F3EDEE','#B9B2B3','#2A2223','#7A0B15','#FF6B76'],sw:['#D7192A','#FFFFFF','#B9B2B3','#2A2223']},
+      sand:{name:'Desert Sand',bg:'linear-gradient(160deg,#D8B58C 0%,#B08559 55%,#7D5A3A 100%)',c:['#FFF7EC','#E9D3B5','#9C7A55','#4A3524','#1E1915','#C9A27A'],sw:['#B08559','#FFF7EC','#9C7A55','#1E1915']},
+      graphite:{name:'Graphite',bg:'linear-gradient(160deg,#6B6566 0%,#423C3D 55%,#231E1F 100%)',c:['#FFFFFF','#D7D2D3','#8E8889','#151112','#D7192A','#B9B2B3'],sw:['#423C3D','#FFFFFF','#8E8889','#D7192A']},
+      monsoon:{name:'Monsoon',bg:'linear-gradient(160deg,#8A9AA6 0%,#5C6C78 55%,#33404A 100%)',c:['#FFFFFF','#DDE5EA','#9FB1BD','#26323B','#0F1418','#C7D3DA'],sw:['#5C6C78','#FFFFFF','#9FB1BD','#0F1418']},
+      saguaro:{name:'Saguaro',bg:'linear-gradient(160deg,#7F9474 0%,#55684C 55%,#33422D 100%)',c:['#F5F3EA','#C9D1B8','#8E9C7F','#2B3326','#141811','#D7C9A8'],sw:['#55684C','#F5F3EA','#8E9C7F','#141811']}
+    };
+    const st=document.getElementById('studioTile'),nm=document.getElementById('blendName'),sw=document.getElementById('blendSw');
+    const field=flakeField(document.getElementById('flakes4'),{density:520,min:3,max:8,rate:.5,burst:8,colors:BL.lava.c});
+    studio.querySelectorAll('.blend').forEach(b=>b.addEventListener('click',()=>{
+      const v=BL[b.dataset.blend];
+      studio.querySelectorAll('.blend').forEach(x=>x.setAttribute('aria-pressed',x===b));
+      st.style.background=v.bg;nm.textContent=v.name+' Blend';
+      sw.innerHTML=v.sw.map(c=>`<i style="background:${c}"></i>`).join('');
+      const sp=nm.parentElement;sp.classList.remove('pop');void sp.offsetWidth;sp.classList.add('pop');
+      field&&field.recolor(v.c);
+    }));
+  }
 
   // reading progress + TOC highlight
   const prog=document.getElementById('progress');
