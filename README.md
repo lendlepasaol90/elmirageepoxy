@@ -2,11 +2,12 @@
 
 Website for El Mirage Epoxy (elmirageepoxy.com), an epoxy flooring contractor in El Mirage, AZ.
 
-Static HTML, no build step. Open `index.html` in a browser.
+Static HTML, no build step. Preview locally with `python3 -m http.server` from this folder and open http://localhost:8000 (opening the files directly won't resolve the root paths).
 
 ## Pages
 - `index.html` (home)
-- Nine service pages, one per service, named after their SEO slugs (e.g. `garage-floor-coatings-el-mirage-az.html`), linked from the Services dropdown
+- Nine service pages, each in its own folder so URLs have no `.html` (e.g. `garage-floor-coatings-el-mirage-az/index.html` is served at `/garage-floor-coatings-el-mirage-az/`), linked from the Services dropdown
+- Links and assets use root paths (`/assets/...`), so serve the site from the domain root (custom domain on GitHub Pages, Netlify, Cloudflare Pages, etc.)
 
 ## To update later
 - Phone and email are placeholders: (623) 555-0148 and info@elmirageepoxy.com
